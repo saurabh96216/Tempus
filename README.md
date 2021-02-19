@@ -33,4 +33,6 @@ Tempus does almost everything using passive and active reconnaissance for web ap
 * input options for threads and the axiom number of droplets in fleet
 * masscan to check for open ports then nmap for service enumeration to make script faster  
 
-# Setup
+# Installation & Setup
+
+
