@@ -1,6 +1,8 @@
 # Tempus
 Project Tempus is a recon automation script for bug bounty hunters and penetration testers to assist in the 1st phase of the cyber kill chain.
 
+# Version: Alpha 1.0
+
 # Features
 
 Tempus does almost everything using passive and active reconnaissance for web applications such as:
@@ -18,6 +20,17 @@ Tempus does almost everything using passive and active reconnaissance for web ap
 * Scanning for AWS S3 buckets
 * Scanning for known CVE's on IP space
 * Checking for subdomain takeovers
+
+# Future features to be implemented
+* Putting all data into a MySQL database
+* A diff function to compare new scan results from last scan to get new data
+* Replacing the telegram bot with a slack bot and adding new alerts for new data and potentialy vulnerable endpoints
+* Javascript monitoring with JSmon
+* Creating custom wordlists for the target from waybackmachine results aswell as scan results
+* Parsing JS files for secrets such as api keys and tokens
+* Using axiom in conjuction with massdns and hakrawler to make script faster
+* input options for threads and the axiom number of droplets in fleet
+* masscan to check for open ports then nmap for service enumeration to make script faster  
 
 Tempus also has a telegram bot feature allowing for alerts to be sent to the user regarding scans and data such as new subdomains.
 
