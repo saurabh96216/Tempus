@@ -5,9 +5,9 @@ Project Tempus is a recon automation script for bug bounty hunters and penetrati
 
 Tempus does almost everything using passive and active reconnaissance for web applications such as:
 
-passive subdomain gathering
-active subdomain gathering
-certificate transperancy 
+* passive subdomain gathering
+* active subdomain gathering
+* certificate transperancy 
 DNS bruteforcing
 pulling data from 3rd party sources such as project discovery
 probing for alive subdomains
