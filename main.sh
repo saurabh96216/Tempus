@@ -1,3 +1,5 @@
+#!/bin/bash
+
 check(){
 local OPTIND opt i
 while getopts 'd:h' opt; do
@@ -74,7 +76,8 @@ main(){
 	scans $d
 
 	#calls telegram bot at the end to send message when recon is complete
-	telegrambot
+	slackbot
+	diff
 
 	stty sane
   	tput sgr0
@@ -155,6 +158,7 @@ portscanning(){
 
 
 dirbusting(){
+	# CHANGE DIRSEARCH TO FFUF FOR DIRBISTING WITH AXIOM TO MAKE IT ALOT FASTER
 	echo "dirbusting with dirsearch to get all directories"
 	cd ~/tools/dirsearch
 	# recursively scan for all dirs on alive subdomains
@@ -184,6 +188,8 @@ jsfiles(){
 	for i in $(cat ~/autorecon-out/$d/javascript/hakcrawler-jsfiles.txt); do 
 		python3 linkfinder.py -i $i -o cli >> ~/autorecon-out/$d/javascript/js-links.txt
 	done 
+
+	# Add secretfinder to find secrets in js files such as API_KEYS and ACCESS_TOKENS
 }
 
 
@@ -210,22 +216,34 @@ scans(){
 }
 
 
-telegrambot(){
-	import requests
+slackbot(){
+	#slack alert for complete scan and date scan was completed
+	data=$(date)
+	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Recon scans are complete for: $data\"}" https://hooks.slack.com/services/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
+	
+	#slack alert for number of alive subdomains
+	typeset -i alivesubs
+	alivesubs=$(sudo cat ~/autorecon-out/$d/subdomains/all-alive.txt | wc -l)
+	message1=$(echo $alivesubs)
+	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Number of alive subdomains: $message1\"}" https://hooks.slack.com/services/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
 
-	def telegram_bot_sendtext(bot_message):
-	    #here i enter my telegram bot token and chatID
-	    bot_token = '1516898483:AAGXQjKTHmpWcPo-OMfJ8koRjz4f-RE00aU'
-	    bot_chatID = '1670316277'
-	    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+	#slack alert for number of ip addresses
+	typeset -i ips
+	ips=$(sudo cat ~/autorecon-out/$d/hosts/ips.txt | wc -l)
+	message2=$(echo $ips)
+	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Number of ip addresses: $message2\"}" https://hooks.slack.com/services/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
+}
 
-	    response = requests.get(send_text)
 
-	    return response.json()
-	    
-	#here is the message the bit will send
-	test = telegram_bot_sendtext("Recon scans complete")
-	print(test)
+diff(){
+	# diff function to compare results from last scan with new scan and get new endpoints
+	# moves recon scan to directory with date scan was conducted
+	dirname=$(date | cut -d' ' -f -3 | sed 's/ /-/g')
+	mkdir $dirname
+	mv autorecon-out ~/$dirname
+
+	# from here the tester can manually compare scan results from new and old scans
+
 }
 
 # all arguments passed to script now passed to main function
