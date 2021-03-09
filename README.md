@@ -1,5 +1,5 @@
 # Tempus
-Project Tempus is a recon automation script for bug bounty hunters and penetration testers to assist in the 1st phase of the cyber kill chain which is reconnaissance allowing the tester to spend more time on hacking and less time on the tedious reconnaissance phase.  Tempus can run on a cron job over night so fresh scan data is ready everyday allowing the tester to have a updated overview of the target web application with live updates via a telegram bot that will alert the tester of new endpoints and potentially vulnerable targets.
+Project Tempus is a recon automation script for bug bounty hunters and penetration testers to assist in the 1st phase of the cyber kill chain which is reconnaissance allowing the tester to spend more time on hacking and less time on the tedious reconnaissance phase.  Tempus can run on a cron job over night so fresh scan data is ready everyday allowing the tester to have a updated overview of the target web application with live updates via a slack bot that will alert the tester of new endpoints and potentially vulnerable targets.
 
 # Version: Alpha 1.0
 
