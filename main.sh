@@ -219,19 +219,19 @@ scans(){
 slackbot(){
 	#slack alert for complete scan and date scan was completed
 	data=$(date)
-	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Recon scans are complete for: $data\"}" https://hooks.slack.com/services/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
+	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Recon scans are complete for: $data\"}" WEBHOOK HERE
 	
 	#slack alert for number of alive subdomains
 	typeset -i alivesubs
 	alivesubs=$(sudo cat ~/autorecon-out/$d/subdomains/all-alive.txt | wc -l)
 	message1=$(echo $alivesubs)
-	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Number of alive subdomains: $message1\"}" https://hooks.slack.com/services/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
+	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Number of alive subdomains: $message1\"}" WEBHOOK HERE
 
 	#slack alert for number of ip addresses
 	typeset -i ips
 	ips=$(sudo cat ~/autorecon-out/$d/hosts/ips.txt | wc -l)
 	message2=$(echo $ips)
-	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Number of ip addresses: $message2\"}" https://hooks.slack.com/services/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
+	curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Number of ip addresses: $message2\"}" WEBHOOK HERE
 }
 
 
