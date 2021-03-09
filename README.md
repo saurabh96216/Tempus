@@ -22,13 +22,14 @@ Tempus does almost everything using passive and active reconnaissance for web ap
 
 # Future features to be implemented
 * Putting all data into a MySQL database
-* A diff function to compare new scan results from last scan to get new data
-* Replacing the telegram bot with a slack bot and adding new alerts for new data and potentialy vulnerable endpoints
+* A diff function to compare new scan results from last scan to get new endpoints
+* New slack alerts with potentially vulnerable targets and new endpoints
 * Javascript monitoring with JSmon
 * Creating custom wordlists for the target from waybackmachine results aswell as scan results
 * Parsing JS files for secrets such as api keys and tokens
 * Using axiom in conjuction with massdns and hakrawler to make script faster
 * input options for threads and the axiom number of droplets in fleet
+* input option for a output file
 * masscan to check for open ports then nmap for service enumeration to make script faster  
 
 # Installation & Setup
