@@ -14,6 +14,7 @@ shift $((OPTIND -1))
 if [ "$input" = "" ]
 then
         echo "no target domain was selected"
+	exit
 else
         echo "Target is $input"
 fi
